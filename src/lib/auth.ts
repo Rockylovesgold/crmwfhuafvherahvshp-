@@ -28,7 +28,20 @@ function safeEqual(left: string, right: string) {
   return left === right;
 }
 
+const authSecret =
+  process.env.AUTH_SECRET ||
+  process.env.NEXTAUTH_SECRET ||
+  "rockmount-temp-secret-change-me-in-production";
+
+const authUrl =
+  process.env.AUTH_URL ||
+  process.env.NEXTAUTH_URL ||
+  "http://localhost:3000";
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  secret: authSecret,
+  basePath: "/api/auth",
+  redirectProxyUrl: authUrl,
   trustHost: true,
   debug: false,
   providers: [
