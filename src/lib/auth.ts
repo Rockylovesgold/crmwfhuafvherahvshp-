@@ -33,15 +33,8 @@ const authSecret =
   process.env.NEXTAUTH_SECRET ||
   "rockmount-temp-secret-change-me-in-production";
 
-const authUrl =
-  process.env.AUTH_URL ||
-  process.env.NEXTAUTH_URL ||
-  "http://localhost:3000";
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   secret: authSecret,
-  basePath: "/api/auth",
-  redirectProxyUrl: authUrl,
   trustHost: true,
   debug: false,
   providers: [
@@ -90,18 +83,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token.id as string;
       }
       return session;
-    },
-    authorized({ auth: session, request: { nextUrl } }) {
-      const isLoggedIn = !!session?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return false;
-      }
-      if (isLoggedIn) {
-        return Response.redirect(new URL("/dashboard", nextUrl));
-      }
-      return true;
     },
   },
 });
