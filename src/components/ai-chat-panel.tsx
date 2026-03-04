@@ -83,7 +83,7 @@ export function AiChatPanel() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 400, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed right-0 top-0 z-50 flex h-screen w-[380px] flex-col border-l border-border bg-background shadow-2xl"
+            className="fixed right-0 top-0 z-50 flex h-screen w-full flex-col border-l border-border bg-background shadow-2xl sm:w-[380px]"
           >
             <div className="flex items-center justify-between border-b border-border px-4 py-3">
               <div className="flex items-center gap-2">
@@ -177,14 +177,14 @@ export function AiChatPanel() {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="fixed bottom-6 right-6 z-50"
+          className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6"
         >
           <Button
             size="lg"
-            className="h-14 w-14 rounded-full shadow-lg glow-blue"
+            className="h-12 w-12 rounded-full shadow-lg glow-blue sm:h-14 sm:w-14"
             onClick={() => setOpen(true)}
           >
-            <MessageSquare className="h-6 w-6" />
+            <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
           </Button>
         </motion.div>
       )}

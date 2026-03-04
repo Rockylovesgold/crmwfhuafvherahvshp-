@@ -195,7 +195,7 @@ export default function ContactsPage() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Contacts</h1>
           <p className="text-muted-foreground">{contacts.length} total contacts</p>
@@ -203,7 +203,7 @@ export default function ContactsPage() {
 
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="gap-2">
+            <Button className="w-full gap-2 sm:w-auto">
               <Plus className="h-4 w-4" />
               Add Contact
             </Button>
@@ -222,7 +222,7 @@ export default function ContactsPage() {
                 <label className="text-sm font-medium">Email *</label>
                 <Input name="email" type="email" required placeholder="john@company.com" />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Phone</label>
                   <Input name="phone" placeholder="+1 (555) 000-0000" />

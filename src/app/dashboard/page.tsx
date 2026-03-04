@@ -103,7 +103,7 @@ export default function DashboardPage() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
-      <div>
+      <div className="space-y-1">
         <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">Welcome back. Here&apos;s your CRM overview.</p>
       </div>
@@ -112,11 +112,11 @@ export default function DashboardPage() {
         {stats.map((stat) => (
           <motion.div key={stat.title} variants={item} whileHover={{ y: -4, scale: 1.01 }}>
             <Card className="metallic-panel border-border/50 bg-card/80 backdrop-blur-sm">
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">{stat.title}</p>
-                    <p className="text-2xl font-bold">{stat.value}</p>
+                    <p className="text-xl font-bold sm:text-2xl">{stat.value}</p>
                   </div>
                   <div className={`rounded-lg bg-muted p-2.5 ${stat.color}`}>
                     <stat.icon className="h-5 w-5" />
@@ -176,7 +176,7 @@ export default function DashboardPage() {
                 logs.slice(0, 8).map((log) => (
                   <div
                     key={log.id}
-                    className="flex items-center justify-between rounded-lg border border-border/30 p-3 transition-colors hover:bg-muted/30"
+                    className="flex flex-col gap-2 rounded-lg border border-border/30 p-3 transition-colors hover:bg-muted/30 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                         <p className="text-xs text-muted-foreground">{log.entityName}</p>
                       </div>
                     </div>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-xs text-muted-foreground sm:pl-2">
                       {formatDate(log.createdAt)}
                     </span>
                   </div>

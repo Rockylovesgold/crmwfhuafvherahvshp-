@@ -104,7 +104,7 @@ export default function PipelinePage() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Pipeline</h1>
           <p className="text-muted-foreground">
@@ -113,7 +113,7 @@ export default function PipelinePage() {
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="gap-2">
+            <Button className="w-full gap-2 sm:w-auto">
               <Plus className="h-4 w-4" />
               New Deal
             </Button>
@@ -139,7 +139,7 @@ export default function PipelinePage() {
       </div>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="flex gap-4 overflow-x-auto pb-4">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
           {stageConfig.map((stage) => {
             const stageDeals = deals.filter((d) => d.stage === stage.id);
             const stageValue = stageDeals.reduce((s, d) => s + d.value, 0);
@@ -147,7 +147,7 @@ export default function PipelinePage() {
             return (
               <motion.div
                 key={stage.id}
-                className="min-w-[280px] flex-1"
+                className="min-w-[280px] snap-start flex-1"
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.24, delay: 0.05 }}
