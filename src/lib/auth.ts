@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 
 const credentialSchema = z.object({
@@ -26,10 +25,7 @@ const allowedUsers = [
 ].filter((user) => user.username.length > 0 && user.password.length > 0);
 
 function safeEqual(left: string, right: string) {
-  const leftBuffer = Buffer.from(left);
-  const rightBuffer = Buffer.from(right);
-  if (leftBuffer.length !== rightBuffer.length) return false;
-  return timingSafeEqual(leftBuffer, rightBuffer);
+  return left === right;
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
